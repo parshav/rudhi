@@ -2,8 +2,8 @@ use chrono::prelude::*;
 use std::fmt;
 
 pub struct Routine {
-	pub name: String,
-	pub last_done: Date<Local>
+	name: String,
+	last_done: Date<Local>
 	// maybe an array of last done or notes for each time done
 }
 
