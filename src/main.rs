@@ -19,6 +19,7 @@ fn main() {
 fn print_routines(routines: &[Routine]) {
 	routines.iter().for_each(|routine| {
 		println!("{}", routine);	
+		routine.store_config();
 	});
 }
 
@@ -27,15 +28,15 @@ fn dummy_routines_data() -> [Routine; 3] {
 	return [
 		Routine {
 			name: String::from("Running"),
-			last_done: Local.ymd(2020, 7, 30)
+			last_done: Local::now()
 		},
 		Routine {
 			name: String::from("Reading"),
-			last_done: Local.ymd(2020, 7, 31)
+			last_done: Local::now()
 		},
 		Routine {
 			name: String::from("Coding"),
-			last_done: Local.ymd(2020, 8, 3)
+			last_done: Local::now()
 		}
 	]
 }
@@ -43,7 +44,7 @@ fn dummy_routines_data() -> [Routine; 3] {
 #[derive(Serialize, Deserialize)]
 struct Routine {
 	name: String,
-	last_done: Date<Local>
+	last_done: DateTime<Local>
 	// maybe an array of last done or notes for each time done
 }
 
