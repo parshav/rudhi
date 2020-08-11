@@ -3,6 +3,8 @@ extern crate chrono;
 use chrono::prelude::*;
 use std::fmt;
 
+use serde_derive::{Serialize, Deserialize};
+
 fn main() {
 
 	// load existing -> all in home directory
@@ -17,6 +19,7 @@ fn main() {
 fn print_routines(routines: &[Routine]) {
 	routines.iter().for_each(|routine| {
 		println!("{}", routine);	
+		routine.store_config();
 	});
 }
 
@@ -25,23 +28,32 @@ fn dummy_routines_data() -> [Routine; 3] {
 	return [
 		Routine {
 			name: String::from("Running"),
-			last_done: Local.ymd(2020, 7, 30)
+			last_done: Local::now()
 		},
 		Routine {
 			name: String::from("Reading"),
-			last_done: Local.ymd(2020, 7, 31)
+			last_done: Local::now()
 		},
 		Routine {
 			name: String::from("Coding"),
-			last_done: Local.ymd(2020, 8, 3)
+			last_done: Local::now()
 		}
 	]
 }
 
+#[derive(Serialize, Deserialize)]
 struct Routine {
 	name: String,
-	last_done: Date<Local>
+	last_done: DateTime<Local>
 	// maybe an array of last done or notes for each time done
+}
+
+impl Routine {
+
+	fn store_config(&self) {
+		let json = serde_json::to_string(&self).expect("Could not convert to json");
+		println!("Stored json : {}", json);
+	}
 }
 
 impl fmt::Display for Routine {
