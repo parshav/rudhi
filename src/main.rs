@@ -4,6 +4,8 @@ mod routine;
 
 use routine::Routine;
 
+use serde_derive::{Serialize, Deserialize};
+
 fn main() {
 
 	// load existing -> all in home directory
@@ -17,9 +19,9 @@ fn main() {
 fn print_routines(routines: &[Routine]) {
 	routines.iter().for_each(|routine| {
 		println!("{}", routine);	
+		routine.store_config();
 	});
 }
-
 
 /* Will be done later
 struct Todo {
