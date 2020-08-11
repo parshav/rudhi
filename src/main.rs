@@ -4,8 +4,6 @@ mod routine;
 
 use routine::Routine;
 
-use serde_derive::{Serialize, Deserialize};
-
 fn main() {
 
 	// load existing -> all in home directory
