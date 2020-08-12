@@ -16,9 +16,7 @@ fn main() {
 
 	let story = get_story().expect("Error in story");
 
-	story.routines.iter().for_each(|r| {
-		println!("Read Routine : {}", r);	
-	});
+	println!("Story : {}", story);
 	
 	match story.routines.len() {
 		0 => {
