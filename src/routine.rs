@@ -3,8 +3,7 @@ use chrono::prelude::*;
 use std::fmt;
 use chrono::{DateTime, TimeZone};
 
-
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone)]
 pub struct Routine {
 	name: String,
 	last_done: DateTime<Local>
@@ -35,6 +34,10 @@ pub fn dummy_routines_data() -> [Routine; 3] {
 			last_done: Local::now()
 		}
 	]
+}
+
+pub fn quick_test() -> [Routine; 0] {
+	return [];
 }
 
 impl Routine {
