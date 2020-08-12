@@ -14,19 +14,20 @@ fn main() {
 	// load existing -> all in home directory
 	// states -> empty, some
 
-	let story = get_story();
-	
-	// match routines.len() {
-		// 0 => {
-			// println!("It was empty");
-		// }
-		// _ => {
-			// println!("Not empty");
-		// }
-	// }
+	let story = get_story().expect("Error in story");
 
-	//let routine = read_files_to_routine().unwrap();
-	//println!("Stored routine : {}", routine);
+	story.routines.iter().for_each(|r| {
+		println!("Read Routine : {}", r);	
+	});
+	
+	match story.routines.len() {
+		0 => {
+			println!("It was empty");
+		}
+		_ => {
+			println!("Not empty");
+		}
+	}
 }
 
 fn print_routines(routines: &Vec<Routine>) {
@@ -49,21 +50,6 @@ fn get_story() -> Option<Story> {
 		return None;
 }
 
-//should return Array of routine instead of just single
-// also clean this up
-fn read_files_to_routine() -> Option<Routine> {
-	let mut home_story = dirs::home_dir().expect("Error in getting Home Dir");
-	home_story.push(".rudhi");
-	home_story.push("routine");
-	let exists = home_story.exists();
-	if exists {
-		let content = fs::read_to_string(home_story).expect("Error reading file");
-		let routine: Routine = serde_json::from_str(&content).expect("Error in deserializing");
-		return Some(routine);
-	}
-	println!("Home : {}", exists);
-	return None;
-}
 
 /* Will be done later
 struct Todo {

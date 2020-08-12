@@ -3,5 +3,5 @@ use serde_derive::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Story {
-	pub routine: Vec<Routine>
+	pub routines: Vec<Routine>
 }
