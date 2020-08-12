@@ -3,6 +3,7 @@ use chrono::prelude::*;
 use std::fmt;
 use chrono::{DateTime, TimeZone};
 
+// add index for editing
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Routine {
 	name: String,
