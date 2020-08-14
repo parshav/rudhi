@@ -9,8 +9,8 @@ pub struct Story {
 
 impl Story {
 
-	fn add_routine(&self, routine: Routine) {
-		routines.push(routine);
+	pub fn add_routine(&mut self, routine: Routine) {
+		self.routines.push(routine);
 	}
 }
 
