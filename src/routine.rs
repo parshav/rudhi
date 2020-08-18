@@ -6,9 +6,9 @@ use chrono::{DateTime, TimeZone};
 // add index for editing
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Routine {
-	id: u16,
-	name: String,
-	last_done: DateTime<Local>
+	pub id: u16,
+	pub name: String,
+	pub last_done: DateTime<Local>
 	// maybe an array of last done or notes for each time done
 }
 
@@ -39,10 +39,6 @@ pub fn dummy_routines_data() -> [Routine; 3] {
 			last_done: Local::now()
 		}
 	]
-}
-
-pub fn quick_test() -> [Routine; 0] {
-	return [];
 }
 
 impl Routine {

@@ -8,15 +8,25 @@ use routine::Routine;
 use story::Story;
 use std::fs::File;
 use std::fs;
+use chrono::prelude::*;
 
 fn main() {
 
 	// load existing -> all in home directory
 	// states -> empty, some
 
-	let story = get_story().expect("Error in story");
+	let mut story = get_story().expect("Error in story");
 
-	println!("Story : {}", story);
+	let test_routine = Routine {
+		id: 2,
+		name: String::from("Cooking"),
+		last_done: Local::now()
+	};
+	//last_done: Local.ymd(2020, 1, 1).and_hms(0, 0, 0)
+	//Local::now()
+	story.add_routine(test_routine);
+
+	println!("Story after add : {}", story);
 	
 	match story.routines.len() {
 		0 => {
